@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-hangar-950: #070c14;
+  --color-hangar-900: #0b1220;
+  --color-hangar-850: #0f1728;
+  --color-hangar-800: #121b2e;
+  --color-hangar-700: #1a2740;
+  --color-hangar-600: #263a5c;
+  --color-hangar-500: #3a5480;
+  --color-blueprint-line: #24406b;
+
+  --color-signal-amber: #f5a623;
+  --color-signal-amber-dim: #8a5f1f;
+  --color-signal-cyan: #5fd4d0;
+  --color-signal-green: #3ddc97;
+  --color-signal-red: #ef5b5b;
+
+  --color-ink-100: #eef2f8;
+  --color-ink-300: #aab8cc;
+  --color-ink-500: #71829e;
+
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-hangar-950);
+  color: var(--color-ink-100);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, var(--color-blueprint-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-blueprint-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.16;
+}
+
+.hud-corners {
+  position: relative;
+}
+.hud-corners::before,
+.hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-signal-amber);
+  opacity: 0;
+  transition: opacity 0.25s ease, width 0.25s ease, height 0.25s ease;
+  pointer-events: none;
+}
+.hud-corners::before {
+  top: -1px; left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.hud-corners::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+.hud-corners:hover::before,
+.hud-corners:hover::after {
+  opacity: 1;
+  width: 20px;
+  height: 20px;
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 18px rgba(245, 166, 35, 0.35);
+}
+
+::selection {
+  background: var(--color-signal-amber);
+  color: var(--color-hangar-950);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-hangar-900); }
+::-webkit-scrollbar-thumb { background: var(--color-hangar-600); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-signal-amber-dim); }
